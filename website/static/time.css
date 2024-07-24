@@ -1,0 +1,21 @@
+.row.row-cols-lg-auto.g-3.align-items-center{
+
+    margin-left: 142px ;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+.table{
+    height: 85%;
+    text-align: center;
+}
+.wide-label {
+    min-width: 100px;
+}

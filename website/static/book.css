@@ -1,0 +1,12 @@
+.booking{
+    margin: 100px;
+    border-width: 20px;
+    border: solid #E5DDC5;
+    padding: 50px;
+}
+.book{
+    text-align: center;
+}
+.submit{
+    text-align: center;
+}

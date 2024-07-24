@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0">
+    <title>Airline Company - Database Project</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/book.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div id="nav-bar">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <span class="navbar-brand icon">
+                    <i class="fa-solid fa-plane-departure "></i>
+                    <strong class="sedan-regular-italic">Relax Airlines</strong>  
+                </span>
+            </div>
+        </nav>
+    </div>
+
+    <div class="booking">
+        <div class="book">
+            <i class="fa-solid fa-ticket"></i>
+            <h3>Check Booking Status</h3>
+        </div>
+        <div class="booking-form">
+            <form id="checkBookingForm">
+                <div class="mb-3">
+                    <label for="passengerNameInput" class="form-label">Passenger Name</label>
+                    <input type="text" class="form-control" id="passengerNameInput" name="passengerName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="passengerIDInput" class="form-label">Passenger ID</label>
+                    <input type="text" class="form-control" id="passengerIDInput" name="passengerID" required>
+                </div>
+                <div class="mb-3">
+                    <label for="flightNumberInput" class="form-label">Flight Number</label>
+                    <input type="text" class="form-control" id="flightNumberInput" name="FlightNumber" required>
+                </div>
+                <div class="submit">
+                    <button type="button" id="submitButton" class="btn btn-secondary">Check Status</button>
+                </div>
+                </form>
+                <div class="booking-label" style="display: none;">
+                    <h4>Booking Status:</h4>
+                </div>
+                <div id="bookingStatus" style="display: none;"></div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Relax Airlines. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#submitButton").click(function() {
+                var formData = {
+                    passengerName: $("#passengerNameInput").val(),
+                    passengerID: $("#passengerIDInput").val(),
+                    flightNumber: $("#flightNumberInput").val(),
+                };
+    
+                $.ajax({
+                    type: "POST",
+                    url: "/check_booking",
+                    contentType: "application/json",
+                    data: JSON.stringify(formData),
+                    success: function(response) {
+                        if (response.success) {
+                            var bookings = response.bookings;
+                            var bookingStatusHtml = "<p>Booking status:</p>";
+                            bookings.forEach(function(booking) {
+                                bookingStatusHtml += "<p>ID: " + booking.PassengerID + ", Name: " + booking.PassengerName + "<br>Flight Number: " + booking.FlightNumber + "<br>Date: " + booking.DepartureDateTime + "<br>Num Tickets: " + booking.NumberOfTickets + ", Class: " + booking.TicketClass + "</p>";
+                            });
+                            $(".booking-label").show(); // Show the label
+                            $("#bookingStatus").html(bookingStatusHtml).show();
+                        } else {
+                            $(".booking-label").hide(); // Hide the label if no bookings found
+                            $("#bookingStatus").html("<p>No bookings found for the provided criteria.</p>").show();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("An error occurred:", error);
+                        $("#bookingStatus").html("<p>An error occurred while processing your request. Please try again later.</p>").show();
+                    }
+                });
+            });
+        });
+    </script>    
+</body>
+
+</html>

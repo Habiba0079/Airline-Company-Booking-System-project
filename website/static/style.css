@@ -1,0 +1,50 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: sans-serif;
+}
+#nav-bar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color:#E5DDC5;
+    background-size: cover;
+    padding: 0px;
+}
+.icon{
+    margin-left: 20px;
+    font-size: 30px;
+}
+.sedan-regular-italic {
+    font-family: "Sedan", serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 30px;
+}
+
+h1{
+    margin-left: 170px;
+    padding: 50px 0px;
+}
+.buttons{
+    text-align: left;
+    margin-top: 50px;
+}
+.btn{
+    margin: 20px;
+}
+footer {
+    
+    background-color:#E5DDC5;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+}
+.opinion-card {
+    margin: 50px;
+    
+}
