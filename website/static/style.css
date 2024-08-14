@@ -1,10 +1,23 @@
+:root {
+    --primary-color: #E5DDC5; /* Blue for primary elements */
+    --text-color: #333; /* Dark color for text */
+    --card-bg-color: #fff; /* White background for cards */
+}
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 body{
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+p {
+    font-weight: 300;
+    color: var(--text-color);
 }
 #nav-bar{
     position: sticky;
@@ -13,6 +26,50 @@ body{
     background-color:#E5DDC5;
     background-size: cover;
     padding: 0px;
+}
+.navbar {
+    background-color: var(--primary-color);
+    padding: 20px;
+    color: var(--text-color); /* Switch to text color for better contrast */
+}
+
+.navbar-brand {
+    color: var(--text-color);
+}
+
+.navbar-brand:hover {
+    color: rgba(0, 0, 0, 0.7); /* Subtle hover effect */
+}
+
+#welcome {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+#welcome::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1;
+}
+
+#welcome h1, #welcome .buttons {
+    position: relative;
+    z-index: 2;
+}
+
+#welcome h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+.container {
+    padding: 40px 20px;
 }
 .icon{
     margin-left: 20px;
@@ -25,10 +82,6 @@ body{
     font-size: 30px;
 }
 
-h1{
-    margin-left: 170px;
-    padding: 50px 0px;
-}
 .buttons{
     text-align: left;
     margin-top: 50px;
@@ -37,14 +90,31 @@ h1{
     margin: 20px;
 }
 footer {
-    
-    background-color:#E5DDC5;
-    bottom: 0;
-    width: 100%;
-    padding: 20px 0;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 0.5% 0;
     text-align: center;
+    border-top: 2px solid rgba(51, 51, 51, 0.1);
+}
+
+footer p {
+    margin: 0;
 }
 .opinion-card {
-    margin: 50px;
-    
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 20px 0;
+   
+}
+.opinion-card:hover {
+    transform: scale(1.05); /* Slight scaling on hover */
+    transition: transform 0.3s ease;
+}
+
+.card {
+    padding: 20px;
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
